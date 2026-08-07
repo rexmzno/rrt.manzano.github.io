@@ -1,0 +1,30 @@
+name: PR Checks
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pypdf
+
+      - name: Confidentiality scan
+        env:
+          CONFIDENTIAL_TERMS: ${{ secrets.CONFIDENTIAL_TERMS }}
+        run: python .github/scripts/check_confidentiality.py
+
+      - name: HTML structural check
+        run: python .github/scripts/check_html_structure.py
+
+      - name: CV content sanity check
+        run: python .github/scripts/check_cv_content.py
