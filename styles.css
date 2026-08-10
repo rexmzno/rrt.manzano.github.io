@@ -549,6 +549,7 @@ summary:focus-visible {
   border-radius: 50%;
   background: var(--accent);
 }
+.timeline-summary { margin: 0; color: var(--text-soft); font-size: 0.96rem; line-height: 1.6; }
 
 /* ---------- Case Studies ---------- */
 .case-study-group { margin-bottom: 48px; }
@@ -562,6 +563,42 @@ summary:focus-visible {
   border-bottom: 1px solid var(--line);
 }
 .case-study-list { display: flex; flex-direction: column; gap: 16px; }
+
+/* Engagement grouping: a lightweight wrapper around related Projects that
+   belong to the same client engagement (Person -> Employer -> Engagement ->
+   Project -> Case Study, per Brand Constitution Information Model). Purely
+   presentational -- does not alter accordion markup or behavior. */
+.engagement-group {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-alt);
+  padding: 18px 18px 2px;
+}
+.engagement-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  padding: 2px 6px 16px;
+}
+.engagement-name {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--navy-800);
+}
+.engagement-meta {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--blue);
+}
+.engagement-projects {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 16px;
+}
 
 .case-study-card {
   background: #fff;
@@ -630,6 +667,19 @@ summary:focus-visible {
   margin-bottom: 4px;
 }
 .cs-meta dd { margin: 0; font-size: 0.9rem; color: var(--text); font-weight: 600; }
+
+/* Role leads the metadata block -- it's the fastest answer to "what did
+   Rex do here," so it gets its own row above Technology/Methodology/Phase
+   rather than sitting as an equal-weight fourth-of-four fact. */
+.cs-meta > div:first-child {
+  grid-column: 1 / -1;
+  padding-bottom: 14px;
+  margin-bottom: 4px;
+  border-bottom: 1px dashed var(--line);
+}
+.cs-meta > div:first-child dt { color: var(--accent); }
+.cs-meta > div:first-child dd { font-size: 1.05rem; }
+
 .cs-section { margin-bottom: 20px; }
 .cs-section:last-child { margin-bottom: 0; }
 .cs-section h4 {
@@ -640,6 +690,14 @@ summary:focus-visible {
   margin: 0 0 6px;
 }
 .cs-section p { margin: 0; font-size: 0.96rem; color: var(--text); line-height: 1.6; }
+
+/* Responsibilities = "what Rex actually did" -- the step the visitor
+   journey most needs to find quickly between Challenge and Deliverables. */
+.cs-section-lead {
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+}
+.cs-section-lead h4 { color: var(--navy-800); }
 
 .case-study-card.cs-pending {
   display: flex;
