@@ -73,6 +73,7 @@ summary:focus-visible {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .reveal { opacity: 1; transform: none; }
   .ambient-field { display: none; }
+  .hero-particle, .contact-particle { animation: none !important; fill: rgba(255, 255, 255, 0.06) !important; }
 }
 
 /* ---------- Ambient particle field (persists across all sections) ---------- */
@@ -297,17 +298,20 @@ summary:focus-visible {
   transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease, fill 0.7s ease, stroke 0.7s ease;
   transition-delay: var(--sd, 0ms);
 }
-.hero-particle-accent { fill: rgba(201, 162, 74, 0.18); }
-
 .hero-visual.in-view .hero-particle {
   transform: translate(0, 0) rotate(0deg);
   opacity: 1;
-  fill: rgba(255, 255, 255, 0.06);
   stroke: rgba(255, 255, 255, 0.22);
+  animation: travelPulse 6s ease-in-out infinite;
+  animation-delay: var(--pd, 0s);
 }
-.hero-visual.in-view .hero-particle-accent {
-  fill: var(--accent);
-  stroke: var(--accent);
+
+/* Traveling highlight: sweeps bottom-to-top through the settled grid,
+   staggered per tile via --pd (row + column offset, computed so the
+   lowest row fires first). */
+@keyframes travelPulse {
+  0%, 8%, 100% { fill: rgba(255, 255, 255, 0.06); stroke: rgba(255, 255, 255, 0.22); }
+  2.5%, 5% { fill: var(--accent); stroke: var(--accent); }
 }
 
 .eyebrow {
@@ -718,6 +722,18 @@ summary:focus-visible {
 .cred-meta { font-size: 0.85rem; color: var(--text-soft); }
 
 /* ---------- Contact ---------- */
+.contact-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.contact-inner { max-width: 680px; flex-shrink: 0; }
+.contact-visual.hero-visual { display: none; }
+@media (min-width: 980px) {
+  .contact-visual.hero-visual { display: block; }
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
