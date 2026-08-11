@@ -1,5 +1,7 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Header background on scroll + scroll progress bar
 const header = document.getElementById('header');
 const progressBar = document.getElementById('progress-bar');
@@ -73,8 +75,6 @@ revealEls.forEach(el => {
 });
 
 // Case study accordion: smooth height animation, one card open per group
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 const CS_TRANSITION_MS = 320;
 
 // Runs `cleanup` once, on whichever comes first: the height transitionend, or a
@@ -170,6 +170,20 @@ const trackedSections = navAnchorLinks
   .map(link => document.querySelector(link.getAttribute('href')))
   .filter(Boolean);
 
+// Mobile section quick-nav: the pill strip mirrors the same active section
+// and scrolls itself horizontally so the active pill stays in view, rather
+// than requiring the visitor to hunt for it across a row wider than the screen.
+const mobileSectionNav = document.getElementById('mobileSectionNav');
+const msnPills = mobileSectionNav ? Array.from(mobileSectionNav.querySelectorAll('.msn-pill')) : [];
+
+function setActivePill(id) {
+  const pill = msnPills.find(p => p.getAttribute('href') === '#' + id);
+  if (!pill) return;
+  msnPills.forEach(p => p.classList.remove('msn-active'));
+  pill.classList.add('msn-active');
+  pill.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', inline: 'center', block: 'nearest' });
+}
+
 const activeNavObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     const link = navAnchorLinks.find(a => a.getAttribute('href') === '#' + entry.target.id);
@@ -177,6 +191,7 @@ const activeNavObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       navAnchorLinks.forEach(a => a.classList.remove('active'));
       link.classList.add('active');
+      setActivePill(entry.target.id);
     }
   });
 }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });

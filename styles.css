@@ -180,6 +180,10 @@ summary:focus-visible {
 }
 .nav-cta:hover { background: #d8b665; }
 
+/* Mobile section quick-nav: hidden by default, shown as a fixed pill strip
+   only below the 720px breakpoint (see the matching @media block). */
+.mobile-section-nav { display: none; }
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -1051,11 +1055,63 @@ summary:focus-visible {
 
   .skills-grid { grid-template-columns: 1fr; }
   .section { padding: 80px 0; }
+
+  /* Mobile section quick-nav: horizontally-scrolling pill strip fixed under
+     the header, mirroring the desktop active-section highlighting so a
+     visitor can jump anywhere in one tap instead of opening the hamburger
+     menu each time. */
+  .mobile-section-nav {
+    display: flex;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    z-index: 890;
+    gap: 8px;
+    padding: 10px 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    background: rgba(11, 18, 32, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .mobile-section-nav::-webkit-scrollbar { display: none; }
+
+  .msn-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 7px 14px;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .msn-pill::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+  .msn-pill[data-color="blue"]::before { background: var(--blue); }
+  .msn-pill.msn-active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.32);
+  }
+
+  .hero { padding-top: 190px; }
+  section[id] { scroll-margin-top: 124px; }
 }
 
 @media (max-width: 520px) {
   .contact-grid { grid-template-columns: 1fr; }
-  .hero { padding-top: 120px; }
+  .hero { padding-top: 170px; }
   .cs-meta { grid-template-columns: 1fr; }
   .cs-summary-btn { padding: 20px; }
   .cs-teaser { padding: 0 20px 18px; }
