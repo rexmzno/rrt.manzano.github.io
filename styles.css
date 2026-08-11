@@ -371,6 +371,27 @@ summary:focus-visible {
   line-height: 1.4;
 }
 
+/* ---------- Section divider wedges (bookend cuts around the dark hero/contact sections) ---------- */
+.section-divider-top { position: relative; }
+.section-divider-top::before {
+  content: "";
+  position: absolute;
+  top: -72px;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  clip-path: polygon(0 100%, 100% 0%, 100% 100%);
+  pointer-events: none;
+}
+#about.section-divider-top::before { background: var(--paper); }
+#contact.section-divider-top::before {
+  background: var(--navy-900);
+  clip-path: polygon(0 0%, 100% 100%, 0% 100%);
+}
+@media (max-width: 720px) {
+  .section-divider-top::before { top: -40px; height: 40px; }
+}
+
 /* ---------- Sections ---------- */
 .section { padding: 110px 0; }
 .section-alt { background: var(--paper-alt); }
@@ -553,6 +574,31 @@ summary:focus-visible {
 .timeline-summary { margin: 0; color: var(--text-soft); font-size: 0.96rem; line-height: 1.6; }
 
 /* ---------- Case Studies ---------- */
+.cs-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+.cs-filter-btn {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 18px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.cs-filter-btn:hover { border-color: var(--accent); color: var(--text); }
+.cs-filter-btn.is-active {
+  background: var(--navy-900);
+  border-color: var(--navy-900);
+  color: #fff;
+}
+
 .case-study-group { margin-bottom: 48px; }
 .case-study-group:last-child { margin-bottom: 0; }
 .case-study-group-title {
@@ -608,7 +654,13 @@ summary:focus-visible {
   box-shadow: var(--shadow);
   overflow: hidden;
 }
-.case-study-card summary {
+.cs-summary-btn {
+  width: 100%;
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  text-align: left;
   list-style: none;
   cursor: pointer;
   display: flex;
@@ -617,9 +669,7 @@ summary:focus-visible {
   gap: 16px;
   padding: 24px 28px;
 }
-.case-study-card summary::-webkit-details-marker { display: none; }
-.case-study-card summary:hover { background: var(--paper-alt); }
-.case-study-card[open] summary { border-bottom: 1px solid var(--line); }
+.cs-summary-btn:hover { background: var(--paper-alt); }
 
 .cs-summary-head { display: flex; flex-direction: column; gap: 4px; }
 .cs-name { font-size: 1.1rem; font-weight: 700; color: var(--text); }
@@ -637,9 +687,91 @@ summary:focus-visible {
   justify-content: center;
   transition: transform 0.25s ease;
 }
-.case-study-card[open] .cs-expand-icon { transform: rotate(45deg); }
+.case-study-card.is-open .cs-expand-icon { transform: rotate(45deg); }
 
-.cs-body { padding: 24px 28px 28px; overflow: hidden; transition: height 0.32s cubic-bezier(0.65, 0, 0.35, 1); }
+/* Always-visible scannable preview, sitting between the toggle button and the
+   expand-only body. A plain sibling div (not native <details> content), so it
+   renders and stays in the accessibility tree regardless of open state. */
+.cs-teaser {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 0 28px 20px;
+  margin-top: -6px;
+}
+.case-study-card.is-open .cs-teaser {
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.cs-teaser-facts {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 16px;
+  font-size: 0.82rem;
+  color: var(--text-soft);
+}
+.cs-teaser-facts strong {
+  color: var(--blue);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 5px;
+}
+.cs-teaser-line {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cs-teaser-outcome {
+  color: var(--text-soft);
+  font-weight: 600;
+}
+.cs-teaser-outcome::before { content: "\2192\0020"; color: var(--accent); font-weight: 700; }
+
+.cs-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin: 1px 0 0;
+}
+.cs-flow-step {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+.cs-flow-arrow { color: var(--accent); font-size: 0.72rem; }
+
+.cs-view-btn {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--blue);
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.cs-view-btn:hover { color: var(--navy-800); text-decoration: underline; }
+
+.cs-body { height: 0; padding: 24px 28px 28px; overflow: hidden; transition: height 0.32s cubic-bezier(0.65, 0, 0.35, 1); }
 .cs-scope-tag {
   display: inline-block;
   font-size: 0.72rem;
@@ -652,6 +784,7 @@ summary:focus-visible {
   border-radius: 999px;
   margin-bottom: 18px;
 }
+.cs-teaser .cs-scope-tag { margin: 0 0 1px; }
 .cs-meta {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -699,6 +832,24 @@ summary:focus-visible {
   border-left: 3px solid var(--accent);
 }
 .cs-section-lead h4 { color: var(--navy-800); }
+
+/* Lessons Learned is always the last .cs-section in a card -- demoted here
+   structurally (no extra class needed) so it reads as secondary to Challenge/
+   Responsibilities/Deliverables/Outcome, per the "read if interested" tier. */
+.cs-body .cs-section:last-child {
+  margin-top: 6px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+.cs-body .cs-section:last-child h4 {
+  color: var(--text-soft);
+  opacity: 0.85;
+}
+.cs-body .cs-section:last-child p {
+  font-size: 0.87rem;
+  font-style: italic;
+  color: var(--text-soft);
+}
 
 .case-study-card.cs-pending {
   display: flex;
@@ -906,7 +1057,8 @@ summary:focus-visible {
   .contact-grid { grid-template-columns: 1fr; }
   .hero { padding-top: 120px; }
   .cs-meta { grid-template-columns: 1fr; }
-  .case-study-card summary { padding: 20px; }
+  .cs-summary-btn { padding: 20px; }
+  .cs-teaser { padding: 0 20px 18px; }
   .cs-body { padding: 20px; }
   .case-study-card.cs-pending {
     flex-direction: column;

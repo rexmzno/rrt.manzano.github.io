@@ -120,15 +120,15 @@
         </div>
         <div class="stat-row reveal">
           <div class="stat">
-            <span class="stat-number" data-target="9" data-suffix="+">0</span>
+            <span class="stat-number">9+</span>
             <span class="stat-label">Years Experience</span>
           </div>
           <div class="stat">
-            <span class="stat-number" data-target="3" data-suffix="">0</span>
+            <span class="stat-number">3</span>
             <span class="stat-label">Service Lines</span>
           </div>
           <div class="stat">
-            <span class="stat-number" data-target="10" data-suffix="+">0</span>
+            <span class="stat-number">9</span>
             <span class="stat-label">Engagements Delivered</span>
           </div>
           <div class="stat">
@@ -161,7 +161,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="section">
+  <section id="about" class="section section-divider-top">
     <div class="container">
       <p class="section-kicker reveal">About</p>
       <h2 class="section-title reveal">Better decisions start with information you can trust</h2>
@@ -237,19 +237,33 @@
         placeholder content.
       </p>
 
+      <div class="cs-filter reveal" role="group" aria-label="Filter case studies by service line">
+        <button type="button" class="cs-filter-btn is-active" data-filter="all">All</button>
+        <button type="button" class="cs-filter-btn" data-filter="erp-finance">ERP &amp; Finance Systems</button>
+        <button type="button" class="cs-filter-btn" data-filter="mgmt-reporting">Management Reporting</button>
+        <button type="button" class="cs-filter-btn" data-filter="tax">Tax &amp; Regulatory</button>
+      </div>
+
       <!-- ERP & Finance Systems Transformation -->
-      <div class="case-study-group reveal">
+      <div class="case-study-group reveal" data-service-group="erp-finance">
         <h3 class="case-study-group-title">ERP &amp; Finance Systems Transformation</h3>
         <div class="case-study-list">
 
-          <details class="case-study-card" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Manufacturing ERP Implementation</span>
                 <span class="cs-industry">Manufacturing</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Project Manager / Lead Business Analyst</span><span><strong>Stack</strong>ERPNext</span><span><strong>Phase</strong>Full implementation</span></p>
+              <p class="cs-teaser-line">No prior ERP system &mdash; finance and inventory operations ran on manual, disconnected processes with no structured audit trail.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">A fully functional ERP environment replacing zero legacy systems with structured, auditable, scalable operations.</p>
+              <div class="cs-flow" aria-hidden="true"><span class="cs-flow-step">Procurement</span><span class="cs-flow-arrow">&harr;</span><span class="cs-flow-step">Inventory</span><span class="cs-flow-arrow">&harr;</span><span class="cs-flow-step">Finance</span></div>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Project Manager / Lead Business Analyst</dd></div>
@@ -263,7 +277,7 @@
               <div class="cs-section"><h4>Outcome</h4><p>A fully functional ERP environment replacing zero legacy systems with structured, auditable, scalable operations.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Building from zero legacy systems removes migration risk but raises the bar on training and change management, since there's no prior system to fall back on.</p></div>
             </div>
-          </details>
+          </div>
 
           <div class="engagement-group" data-engagement="weighbridge-erp-integration">
             <div class="engagement-head">
@@ -272,14 +286,21 @@
             </div>
             <div class="engagement-projects">
 
-          <details class="case-study-card" data-engagement="weighbridge-erp-integration" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="weighbridge-erp-integration" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Digitising Industrial Weighbridge Operations: Process Engineering &amp; System Design</span>
                 <span class="cs-industry">Manufacturing &middot; Industrial Operations</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>ERP Project Manager / Business Analyst</span><span><strong>Stack</strong>ERP-integrated weighbridge platform</span><span><strong>Phase</strong>Full implementation &mdash; discovery through go-live</span></p>
+              <p class="cs-teaser-line">Truck movements depended on manual recording and disconnected operational processes.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Centralised previously fragmented, manually-recorded truck movements into one operational workflow spanning gate entry through warehouse exit.</p>
+              <div class="cs-flow" aria-hidden="true"><span class="cs-flow-step">Gate</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Weighbridge</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Warehouse</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Inventory</span></div>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>ERP Project Manager / Business Analyst</dd></div>
@@ -293,16 +314,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Centralised previously fragmented, manually-recorded truck movements into one operational workflow spanning gate entry through warehouse exit &mdash; replacing inconsistent tracking and duplicated records with a shared, system-driven view of every truck's status.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>A weighbridge system isn't just about capturing a weight &mdash; the process design work (what state is a truck in, and who needs to know) mattered as much as the weight-capture logic itself.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="weighbridge-erp-integration" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="weighbridge-erp-integration" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Solution Architecture for Multi-Weighbridge ERP Integration</span>
                 <span class="cs-industry">Manufacturing &middot; Industrial Operations</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>ERP Project Manager / Solution Designer</span><span><strong>Stack</strong>ERP-integrated weighbridge platform</span><span><strong>Phase</strong>Full implementation &mdash; discovery through go-live</span></p>
+              <p class="cs-teaser-line">The facility operated four weighbridges with no shared transaction model.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Delivered a single transaction model supporting four weighbridge units within one ERP workflow.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>ERP Project Manager / Solution Designer</dd></div>
@@ -316,16 +343,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Delivered a single transaction model supporting four weighbridge units within one ERP workflow &mdash; replacing manual weight computation with system-generated gross, tare, and net weights and consistent, auditable documentation across every unit.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Designing for a manual weight-capture fallback alongside the automated path wasn't a compromise &mdash; it was what made the system usable on day one, when not every weighbridge's automated capture was fully reliable yet.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="weighbridge-erp-integration" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="weighbridge-erp-integration" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Documentation, Training &amp; Go-Live for an ERP-Integrated Weighbridge System</span>
                 <span class="cs-industry">Manufacturing &middot; Industrial Operations</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>ERP Project Manager</span><span><strong>Stack</strong>ERP-integrated weighbridge platform</span><span><strong>Phase</strong>Full implementation &mdash; UAT through go-live</span></p>
+              <p class="cs-teaser-line">A working weighbridge system alone wouldn&rsquo;t replace paper-based operations.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Delivered a fully documented, trained operation at go-live.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>ERP Project Manager</dd></div>
@@ -339,7 +372,7 @@
               <div class="cs-section"><h4>Outcome</h4><p>Delivered a fully documented, trained operation at go-live &mdash; giving gate, weighbridge, and warehouse staff the materials and training needed to run the new system correctly from day one, not just a working piece of software.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Documentation and training aren't a wrap-up activity after the system is built &mdash; treating them as their own deliverable, tracked alongside development, was what made go-live uneventful instead of chaotic.</p></div>
             </div>
-          </details>
+          </div>
 
             </div>
           </div>
@@ -351,16 +384,23 @@
             </div>
             <div class="engagement-projects">
 
-          <details class="case-study-card" data-engagement="greenfield-container-terminal" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="greenfield-container-terminal" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Digital Transformation of a Greenfield Container Terminal: Process Engineering &amp; Gate Operations</span>
                 <span class="cs-industry">Port &amp; Terminal &middot; Logistics</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="cs-body">
+            </button>
+            <div class="cs-teaser">
               <span class="cs-scope-tag">Phase 1 &middot; Container Operations Only &middot; Lift-and-Shift</span>
+              <p class="cs-teaser-facts"><span><strong>Role</strong>ERP/TOS Consultant, Business Analyst &amp; Project Manager</span><span><strong>Stack</strong>ERP-based Terminal Operating System (TOS)</span><span><strong>Phase</strong>Phase 1 only &mdash; Container Operations only</span></p>
+              <p class="cs-teaser-line">The terminal relied on manual coordination across gate operations, yard control, and clearance.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Replaced fragmented, manually-coordinated gate and yard operations with a single digital workflow adapted from a proven operational reference model.</p>
+              <div class="cs-flow" aria-hidden="true"><span class="cs-flow-step">Gate In</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Yard</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Clearance</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Gate Out</span></div>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
+            <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>ERP/TOS Consultant, Business Analyst &amp; Project Manager</dd></div>
                 <div><dt>Technology</dt><dd>ERP-based Terminal Operating System (TOS) platform</dd></div>
@@ -373,18 +413,24 @@
               <div class="cs-section"><h4>Outcome</h4><p>Replaced fragmented, manually-coordinated gate and yard operations with a single digital workflow adapted from a proven operational reference model &mdash; reducing implementation risk while establishing real-time container tracking from gate entry through yard assignment.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Adapting a proven reference model is not the same as copying it &mdash; the real work was validating which parts of the reference operation actually applied here and redesigning the rest to fit this terminal's own constraints.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="greenfield-container-terminal" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="greenfield-container-terminal" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Terminal Operations Requirements Engineering &amp; Business Rules Design</span>
                 <span class="cs-industry">Port &amp; Terminal &middot; Logistics</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="cs-body">
+            </button>
+            <div class="cs-teaser">
               <span class="cs-scope-tag">Phase 1 &middot; Container Operations Only &middot; Lift-and-Shift</span>
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Business Analyst / ERP-TOS Consultant</span><span><strong>Stack</strong>ERP-based Terminal Operating System (TOS)</span><span><strong>Phase</strong>Phase 1 only &mdash; Container Operations only</span></p>
+              <p class="cs-teaser-line">Business rules governing container entry &mdash; such as requiring an approved booking before a truck could pass the gate &mdash; existed only as informal practice.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Gave the terminal a documented, enforceable set of gate-entry business rules translated directly into system behaviour.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
+            <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Business Analyst / ERP-TOS Consultant</dd></div>
                 <div><dt>Technology</dt><dd>ERP-based Terminal Operating System (TOS) platform</dd></div>
@@ -397,18 +443,24 @@
               <div class="cs-section"><h4>Outcome</h4><p>Gave the terminal a documented, enforceable set of gate-entry business rules translated directly into system behaviour &mdash; reducing reliance on manual gatekeeping judgement.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>The most valuable requirements work wasn't writing down what the business already knew &mdash; it was turning informal practice into an explicit, testable system rule.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="greenfield-container-terminal" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="greenfield-container-terminal" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">UAT, Training &amp; Go-Live Readiness for a Greenfield Container Terminal</span>
                 <span class="cs-industry">Port &amp; Terminal &middot; Logistics</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="cs-body">
+            </button>
+            <div class="cs-teaser">
               <span class="cs-scope-tag">Phase 1 &middot; Container Operations Only &middot; Lift-and-Shift</span>
+              <p class="cs-teaser-facts"><span><strong>Role</strong>ERP Project Manager / Business Analyst</span><span><strong>Stack</strong>ERP-based Terminal Operating System (TOS)</span><span><strong>Phase</strong>Phase 1 only &mdash; Container Operations only</span></p>
+              <p class="cs-teaser-line">Moving gate and yard staff from paper-based coordination to a system-driven process required more than working software.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Delivered a trained, ready operational team and a defect-tested system at go-live.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
+            <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>ERP Project Manager / Business Analyst</dd></div>
                 <div><dt>Technology</dt><dd>ERP-based Terminal Operating System (TOS) platform</dd></div>
@@ -421,21 +473,27 @@
               <div class="cs-section"><h4>Outcome</h4><p>Delivered a trained, ready operational team and a defect-tested system at go-live &mdash; moving gate and yard operations from paper forms to a system-driven workflow with real-time status visibility.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>User training should start well before UAT closes &mdash; staff already comfortable with the system make UAT feedback more accurate and go-live far less disruptive.</p></div>
             </div>
-          </details>
+          </div>
 
             </div>
           </div>
 
-          <details class="case-study-card" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Telecommunications Procure-to-Pay Transformation</span>
                 <span class="cs-industry">Telecommunications</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="cs-body">
+            </button>
+            <div class="cs-teaser">
               <span class="cs-scope-tag">Planning Phase Only</span>
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Finance Transformation Consultant (PwC)</span><span><strong>Stack</strong>SAP Ariba</span><span><strong>Phase</strong>Planning only</span></p>
+              <p class="cs-teaser-line">Existing procure-to-pay processes lacked a defined future state and governance structure to support a planned SAP Ariba transformation.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">A defined, board-ready future-state P2P process and governance framework handed off for a separate implementation phase.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
+            <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Finance Transformation Consultant (PwC engagement team)</dd></div>
                 <div><dt>Technology</dt><dd>SAP Ariba</dd></div>
@@ -448,16 +506,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>A defined, board-ready future-state P2P process and governance framework handed off for a separate implementation phase.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>A planning engagement earns its value by making the future-state design specific enough that an implementation team can execute it without re-discovering the same requirements.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Media &amp; Telecommunications Finance Process Transformation</span>
                 <span class="cs-industry">Media &amp; Telecommunications</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Finance Transformation Consultant (PwC)</span><span><strong>Stack</strong>Not disclosed</span><span><strong>Phase</strong>Finance transformation &amp; internal-control engagement</span></p>
+              <p class="cs-teaser-line">Finance processes across General Ledger, AP/AR, and compliance functions needed stronger controls and clearer governance.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Strengthened financial control and operational performance through redesigned processes and governance.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Finance Transformation Consultant (PwC engagement team)</dd></div>
@@ -471,16 +535,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Strengthened financial control and operational performance through redesigned processes and governance.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>KPI structures only stick when they're designed alongside the governance framework that enforces them, not bolted on afterward.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Microsoft Dynamics ERP Migration</span>
                 <span class="cs-industry">Professional Services</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Accounting Supervisor (supporting role)</span><span><strong>Stack</strong>Microsoft Dynamics</span><span><strong>Phase</strong>Migration support</span></p>
+              <p class="cs-teaser-line">Limited financial visibility under the prior system.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Contributed to improved financial visibility and operational efficiency following the migration.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Accounting Supervisor (supporting role in the migration)</dd></div>
@@ -494,7 +564,7 @@
               <div class="cs-section"><h4>Outcome</h4><p>Contributed to improved financial visibility and operational efficiency following the migration.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Supporting a systems migration from inside the finance function makes it easier to catch gaps between the old process and the new system than reviewing it purely from the outside.</p></div>
             </div>
-          </details>
+          </div>
 
           <div class="engagement-group" data-engagement="multi-country-industrial-distributor-erp">
             <div class="engagement-head">
@@ -503,14 +573,21 @@
             </div>
             <div class="engagement-projects">
 
-          <details class="case-study-card" data-engagement="multi-country-industrial-distributor-erp" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="multi-country-industrial-distributor-erp" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">ERP Modernization for a Multi-Country Industrial Distributor</span>
                 <span class="cs-industry">Industrial Distribution &middot; Multi-Country Operations</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>ERP Project Manager / Business Analyst</span><span><strong>Stack</strong>ERPNext</span><span><strong>Phase</strong>Full implementation &mdash; discovery through go-live</span></p>
+              <p class="cs-teaser-line">Operations spanned multiple legal entities and countries running on disconnected processes.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Replaced fragmented, entity-by-entity operations with a standardized, configuration-first ERP platform.</p>
+              <div class="cs-flow" aria-hidden="true"><span class="cs-flow-step">Discovery</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">MVP Scope</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Configuration</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">UAT</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Go-Live</span></div>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>ERP Project Manager / Business Analyst</dd></div>
@@ -524,16 +601,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Replaced fragmented, entity-by-entity operations with a standardized, configuration-first ERP platform supporting quotation-to-order, multi-currency transactions, and consistent item governance across multiple countries &mdash; validated through a staging environment before go-live, protecting timeline and long-term upgradeability by minimizing custom development.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Standardizing operations across multiple legal entities works best when governance &mdash; item groups, naming conventions, pricing rules &mdash; is designed before data migration, not after.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="multi-country-industrial-distributor-erp" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="multi-country-industrial-distributor-erp" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">ERP Governance &amp; Decision Framework for a Multi-Entity Distributor</span>
                 <span class="cs-industry">Industrial Distribution &middot; Multi-Country Operations</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>ERP Project Manager / Business Analyst</span><span><strong>Stack</strong>ERPNext</span><span><strong>Phase</strong>Solution design &amp; governance definition</span></p>
+              <p class="cs-teaser-line">With multiple legal entities standardizing onto one ERP platform, uncontrolled customization and inconsistent master data threatened both the project timeline and the system&rsquo;s long-term maintainability.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Delivered a governed, standardized ERP platform where approval logic and master data followed consistent rules across entities.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>ERP Project Manager / Business Analyst</dd></div>
@@ -547,16 +630,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Delivered a governed, standardized ERP platform where approval logic and master data followed consistent rules across entities &mdash; reducing technical debt and protecting the platform's ability to be upgraded rather than locked into custom code.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Configuration decisions made early &mdash; before any custom development starts &mdash; create more long-term value than the same decisions made after custom code already exists.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="multi-country-industrial-distributor-erp" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="multi-country-industrial-distributor-erp" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Program Delivery &amp; Executive Alignment for a Multi-Country ERP Rollout</span>
                 <span class="cs-industry">Industrial Distribution &middot; Multi-Country Operations</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>ERP Project Manager</span><span><strong>Stack</strong>ERPNext</span><span><strong>Phase</strong>Full delivery lifecycle &mdash; discovery through hypercare</span></p>
+              <p class="cs-teaser-line">Delivering one ERP platform across multiple countries and business functions meant coordinating developers, QA, operations, finance, and sales simultaneously.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Kept technical delivery and business stakeholders aligned throughout a multi-country rollout.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>ERP Project Manager</dd></div>
@@ -570,7 +659,7 @@
               <div class="cs-section"><h4>Outcome</h4><p>Kept technical delivery and business stakeholders aligned throughout a multi-country rollout &mdash; reducing requirement ambiguity through structured documentation and giving executives a consistent, decision-ready view of progress.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>On multi-stakeholder ERP programs, misalignment causes more delivery risk than software defects &mdash; structured executive communication matters as much as the technical implementation.</p></div>
             </div>
-          </details>
+          </div>
 
             </div>
           </div>
@@ -582,14 +671,21 @@
             </div>
             <div class="engagement-projects">
 
-          <details class="case-study-card" data-engagement="grain-terminal-erp-transformation" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="grain-terminal-erp-transformation" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Grain Terminal Inventory System Transformation</span>
                 <span class="cs-industry">Grain Importation &middot; Port Logistics</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Business Transformation Consultant / Lead BA</span><span><strong>Stack</strong>ERPNext, Python, Frappe</span><span><strong>Phase</strong>Full implementation &mdash; discovery through go-live</span></p>
+              <p class="cs-teaser-line">Operations ran on multiple Excel trackers with manual Authority-to-Withdraw processing, manual vessel reconciliation, and manual billing.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Replaced a fragmented, spreadsheet-dependent operation with a single, standardised ERP system.</p>
+              <div class="cs-flow" aria-hidden="true"><span class="cs-flow-step">Order Mgmt</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Wharf</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Warehouse</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Logistics</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Inventory</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Outturn</span></div>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Business Transformation Consultant / Lead Business Analyst</dd></div>
@@ -603,16 +699,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Replaced a fragmented, spreadsheet-dependent operation with a single, standardised ERP system spanning order management, wharf, warehouse, logistics, inventory, and outturn reporting &mdash; giving the business end-to-end visibility and a clear audit trail across previously manual, disconnected processes.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Transformation at this scale depends as much on stakeholder alignment and adoption as on system design &mdash; balancing operational practicality with ERP design, and driving adoption through documentation and training, mattered as much as the configuration itself.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="grain-terminal-erp-transformation" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="grain-terminal-erp-transformation" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Vessel Operations &amp; Outturn Reconciliation for a Grain Terminal</span>
                 <span class="cs-industry">Grain Importation &middot; Marine/Vessel Operations</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Business Analyst / ERP Project Manager</span><span><strong>Stack</strong>ERPNext, Python, Frappe</span><span><strong>Phase</strong>Full implementation &mdash; discovery through go-live</span></p>
+              <p class="cs-teaser-line">Vessel unloading and outturn reporting relied on manual reconciliation between foreign vessel lightening, local vessel unloading, and outport operations.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Replaced manual, after-the-fact vessel reconciliation with a system-driven outturn reporting process spanning vessel simulation through final reconciliation.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Business Analyst / ERP Project Manager</dd></div>
@@ -626,16 +728,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Replaced manual, after-the-fact vessel reconciliation with a system-driven outturn reporting process spanning vessel simulation through final reconciliation &mdash; giving operations a consistent, auditable record of planned versus actual vessel outturn across multiple port locations.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Marine and wharf operations run on real-world variability &mdash; weather, vessel scheduling, multi-port logistics &mdash; that doesn't map cleanly to rigid system logic. The workflow had to be designed flexible enough to absorb that variability without losing the audit trail.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="grain-terminal-erp-transformation" data-service="erp-finance">
-            <summary>
+          <div class="case-study-card" data-engagement="grain-terminal-erp-transformation" data-service="erp-finance">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Automated Billing &amp; Authority-to-Withdraw for Grain Logistics</span>
                 <span class="cs-industry">Grain Importation &middot; Port Logistics</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Business Analyst / ERP Project Manager</span><span><strong>Stack</strong>ERPNext, Python, Frappe</span><span><strong>Phase</strong>Full implementation &mdash; discovery through go-live</span></p>
+              <p class="cs-teaser-line">Storage and polybag billing were calculated manually against pro-rata vessel allocations, and warehouse withdrawals depended on manually issued Authority-to-Withdraw approvals.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Replaced manual billing calculations and paper-based withdrawal approvals with an automated, rule-driven process.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Business Analyst / ERP Project Manager</dd></div>
@@ -649,7 +757,7 @@
               <div class="cs-section"><h4>Outcome</h4><p>Replaced manual billing calculations and paper-based withdrawal approvals with an automated, rule-driven process &mdash; giving the business a consistent, auditable basis for both storage/polybag billing and warehouse withdrawal approvals.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>Automating a billing rule as specific as pro-rata vessel allocation only works if the business logic is validated line-by-line with the people who currently do it manually &mdash; this became the most detailed and iterative part of UAT.</p></div>
             </div>
-          </details>
+          </div>
 
             </div>
           </div>
@@ -658,7 +766,7 @@
       </div>
 
       <!-- Management Reporting & Performance Advisory -->
-      <div class="case-study-group reveal">
+      <div class="case-study-group reveal" data-service-group="mgmt-reporting">
         <h3 class="case-study-group-title">Management Reporting &amp; Performance Advisory</h3>
         <div class="case-study-list">
           <div class="engagement-group" data-engagement="uk-manufacturer-financial-decision-support">
@@ -668,14 +776,21 @@
             </div>
             <div class="engagement-projects">
 
-          <details class="case-study-card" data-engagement="uk-manufacturer-financial-decision-support" data-service="mgmt-reporting">
-            <summary>
+          <div class="case-study-card" data-engagement="uk-manufacturer-financial-decision-support" data-service="mgmt-reporting">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Integrated Financial Decision-Support Framework for a UK Manufacturer</span>
                 <span class="cs-industry">Manufacturing &middot; United Kingdom</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Finance Transformation Lead / Reporting Architect</span><span><strong>Stack</strong>Sage, Progress Plus</span><span><strong>Phase</strong>Full framework design and rollout</span></p>
+              <p class="cs-teaser-line">Operational and financial information was spread across Sage, Progress Plus, engineering data, and manual reporting.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Replaced four disconnected finance documents with one integrated decision-support architecture.</p>
+              <div class="cs-flow" aria-hidden="true"><span class="cs-flow-step">Costing</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Profitability</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Reporting</span><span class="cs-flow-arrow">&rarr;</span><span class="cs-flow-step">Investment</span></div>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Finance Transformation Lead / Management Reporting Architect</dd></div>
@@ -689,16 +804,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Replaced four disconnected finance documents with one integrated decision-support architecture &mdash; connecting costing, profitability, reporting, and investment appraisal so management could trace a decision back to the operational data behind it, not just read a static report.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>The hardest part of building decision-support tools isn't the modelling &mdash; it's designing them so every output ends with a recommended action, not just a number, which is what actually changes how management uses them.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="uk-manufacturer-financial-decision-support" data-service="mgmt-reporting">
-            <summary>
+          <div class="case-study-card" data-engagement="uk-manufacturer-financial-decision-support" data-service="mgmt-reporting">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Costing Framework &amp; Standard Costing Methodology for Engineer-to-Order Manufacturing</span>
                 <span class="cs-industry">Manufacturing &middot; United Kingdom</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Costing Framework Designer</span><span><strong>Stack</strong>Sage, Progress Plus</span><span><strong>Phase</strong>Framework design and documentation</span></p>
+              <p class="cs-teaser-line">Job costing, quoting, and production costs were tracked inconsistently across systems, with no standard costing methodology connecting engineering, production, and finance.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Replaced inconsistent, system-by-system costing with a single layered costing methodology spanning engineering, production, and finance.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Costing Framework Designer</dd></div>
@@ -712,16 +833,22 @@
               <div class="cs-section"><h4>Outcome</h4><p>Replaced inconsistent, system-by-system costing with a single layered costing methodology spanning engineering, production, and finance &mdash; giving the business a consistent, auditable basis for both quoting and profitability analysis.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>A costing framework only holds up if engineering, production, and finance are working from the same rate cards and governance rules &mdash; it had to be designed as a shared methodology, not a finance-only spreadsheet.</p></div>
             </div>
-          </details>
+          </div>
 
-          <details class="case-study-card" data-engagement="uk-manufacturer-financial-decision-support" data-service="mgmt-reporting">
-            <summary>
+          <div class="case-study-card" data-engagement="uk-manufacturer-financial-decision-support" data-service="mgmt-reporting">
+            <button type="button" class="cs-summary-btn" aria-expanded="false">
               <span class="cs-summary-head">
                 <span class="cs-name">Capital Investment Appraisal &amp; Profitability Analytics for Manufacturing Capex Decisions</span>
                 <span class="cs-industry">Manufacturing &middot; United Kingdom</span>
               </span>
               <span class="cs-expand-icon" aria-hidden="true">+</span>
-            </summary>
+            </button>
+            <div class="cs-teaser">
+              <p class="cs-teaser-facts"><span><strong>Role</strong>Business Analyst / Financial Modeller</span><span><strong>Stack</strong>Financial modelling (spreadsheet-based)</span><span><strong>Phase</strong>Framework design &amp; application to live decisions</span></p>
+              <p class="cs-teaser-line">Capital investment decisions and profitability improvement priorities were made without a consistent evaluation framework.</p>
+              <p class="cs-teaser-line cs-teaser-outcome">Gave the business a reusable, consistent framework for evaluating capital expenditure decisions.</p>
+              <button type="button" class="cs-view-btn">View case study &rarr;</button>
+            </div>
             <div class="cs-body">
               <dl class="cs-meta">
                 <div><dt>Role</dt><dd>Business Analyst / Financial Modeller</dd></div>
@@ -735,7 +862,7 @@
               <div class="cs-section"><h4>Outcome</h4><p>Gave the business a reusable, consistent framework for evaluating capital expenditure decisions, and a sensitivity model that identified utilisation &mdash; not isolated cost-cutting &mdash; as the primary driver of profitability recovery.</p></div>
               <div class="cs-section"><h4>Lessons Learned</h4><p>A sensitivity model earns trust when it changes a decision &mdash; showing that utilisation mattered more than cost-cutting was only credible because the model could be traced back to the same cost data the business already recognised.</p></div>
             </div>
-          </details>
+          </div>
 
             </div>
           </div>
@@ -743,7 +870,7 @@
       </div>
 
       <!-- Tax & Regulatory Compliance Advisory -->
-      <div class="case-study-group reveal">
+      <div class="case-study-group reveal" data-service-group="tax">
         <h3 class="case-study-group-title">Tax &amp; Regulatory Compliance Advisory</h3>
         <div class="case-study-list">
           <div class="case-study-card cs-pending">
@@ -949,7 +1076,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="section section-contact">
+  <section id="contact" class="section section-contact section-divider-top section-divider-top--mirror">
     <div class="container contact-layout">
       <div class="contact-inner">
         <p class="section-kicker reveal">Get in touch</p>
