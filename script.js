@@ -55,30 +55,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealEls.forEach(el => revealObserver.observe(el));
 
-// Animated stat counters
-const statNumbers = document.querySelectorAll('.stat-number');
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
-    const target = parseInt(el.dataset.target, 10);
-    const suffix = el.dataset.suffix || '';
-    const duration = 900;
-    const start = performance.now();
-
-    function tick(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const value = Math.round(progress * target);
-      el.textContent = value + suffix;
-      if (progress < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-    statObserver.unobserve(el);
-  });
-}, { threshold: 0.5 });
-
-statNumbers.forEach(el => statObserver.observe(el));
-
 // Case study accordion: smooth height animation, one card open per group
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -102,42 +78,71 @@ function runOnceAfterHeightTransition(body, cleanup) {
   setTimeout(finish, CS_TRANSITION_MS + 80);
 }
 
+function setExpanded(card, isOpen) {
+  card.classList.toggle('is-open', isOpen);
+  const btn = card.querySelector('.cs-summary-btn');
+  if (btn) btn.setAttribute('aria-expanded', String(isOpen));
+}
+
 function closeCard(card) {
   const body = card.querySelector('.cs-body');
-  if (!card.open || !body) return;
-  if (reduceMotion) { card.open = false; return; }
+  if (!card.classList.contains('is-open') || !body) return;
+  if (reduceMotion) { setExpanded(card, false); return; }
   const startHeight = body.scrollHeight;
   body.style.height = startHeight + 'px';
   void body.offsetHeight; // force reflow so the browser commits the start height before animating
   body.style.height = '0px';
   runOnceAfterHeightTransition(body, () => {
-    card.open = false;
-    body.style.height = '';
+    setExpanded(card, false);
+    body.style.height = ''; // falls back to the CSS resting height: 0
   });
 }
 
 function openCard(card) {
   const body = card.querySelector('.cs-body');
-  card.open = true;
+  setExpanded(card, true);
   if (!body || reduceMotion) return;
   const endHeight = body.scrollHeight;
   body.style.height = '0px';
   void body.offsetHeight; // force reflow so the browser commits 0 before animating to endHeight
   body.style.height = endHeight + 'px';
   runOnceAfterHeightTransition(body, () => {
-    body.style.height = '';
+    body.style.height = 'auto'; // content-sized resting state; CSS default (0) would re-collapse it
   });
 }
 
 document.querySelectorAll('.case-study-list').forEach(list => {
-  const cards = list.querySelectorAll('details.case-study-card');
+  const cards = list.querySelectorAll('.case-study-card:not(.cs-pending)');
   cards.forEach(card => {
-    const summary = card.querySelector('summary');
-    summary.addEventListener('click', (e) => {
-      e.preventDefault();
-      const willOpen = !card.open;
+    const toggle = () => {
+      const willOpen = !card.classList.contains('is-open');
       cards.forEach(other => { if (other !== card) closeCard(other); });
       if (willOpen) openCard(card); else closeCard(card);
+    };
+
+    const summaryBtn = card.querySelector('.cs-summary-btn');
+    summaryBtn.addEventListener('click', toggle);
+
+    const viewBtn = card.querySelector('.cs-view-btn');
+    if (viewBtn) {
+      viewBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggle();
+      });
+    }
+  });
+});
+
+// Case study service-line filter
+const csFilterBtns = document.querySelectorAll('.cs-filter-btn');
+const csGroups = document.querySelectorAll('.case-study-group[data-service-group]');
+
+csFilterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+    csFilterBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+    csGroups.forEach(group => {
+      group.hidden = filter !== 'all' && group.dataset.serviceGroup !== filter;
     });
   });
 });
