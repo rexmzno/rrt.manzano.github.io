@@ -53,7 +53,24 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 
-revealEls.forEach(el => revealObserver.observe(el));
+// Tall containers (e.g. .case-study-group, which can run several thousand px
+// with all its cards) can never satisfy a 15%-of-own-height threshold at a
+// normal viewport height -- give them a near-zero threshold instead so they
+// still reveal as soon as any part scrolls into view, rather than staying
+// stuck at opacity: 0 indefinitely.
+const tallRevealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      tallRevealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0 });
+
+revealEls.forEach(el => {
+  const target = el.classList.contains('case-study-group') ? tallRevealObserver : revealObserver;
+  target.observe(el);
+});
 
 // Case study accordion: smooth height animation, one card open per group
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
