@@ -837,8 +837,18 @@ summary:focus-visible {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 8px 24px;
 }
+.footer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+.footer-contact a {
+  color: rgba(238,241,247,0.55);
+  transition: color 0.2s ease;
+}
+.footer-contact a:hover { color: var(--accent); }
 
 /* ---------- Reveal animation ---------- */
 .reveal {
