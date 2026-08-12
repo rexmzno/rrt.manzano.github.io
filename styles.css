@@ -519,6 +519,62 @@ summary:focus-visible {
 .about-copy p { font-size: 1.08rem; color: var(--text-soft); margin: 0 0 18px; }
 .about-copy p:last-child { margin-bottom: 0; }
 
+/* About capability chain (Workstream 02): Foundation -> Transformation ->
+   Systems -> Delivery. Deliberately not a second Career timeline -- rail is
+   segmented (a real gap between items, no border spans it) rather than
+   continuous, and the marker/payoff below are independently defined rather
+   than reusing .timeline-content li::before / .cs-section-lead directly, so
+   this component isn't CSS-coupled to either. */
+.about-chain-intro {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--text-soft);
+  margin: 0 0 14px;
+}
+.about-chain {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+}
+.about-chain li {
+  position: relative;
+  border-left: 1px solid var(--line);
+  padding: 0 0 3px 20px;
+  margin-bottom: 16px;
+}
+.about-chain li:last-child { margin-bottom: 0; }
+.about-chain li::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.about-chain strong {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.about-chain span {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+.about-chain-payoff {
+  border-left: 3px solid var(--accent);
+  padding-left: 20px;
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--text-soft);
+}
+
 /* ---------- Solutions ---------- */
 .solutions-grid {
   display: grid;
