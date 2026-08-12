@@ -604,11 +604,24 @@ summary:focus-visible {
 }
 .solution-arrow { color: var(--accent); font-size: 1.1rem; }
 .solution-service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--blue);
   margin: 0;
 }
+/* Icon sits on its own centered line above the text, not inline before it.
+   Tried inline-before-text first and measured empirically: with the card's
+   existing text-align:center and two of the three service names wrapping to
+   2 lines at actual card width, align-items:center on an inline icon+text
+   row centers the icon against the whole wrapped block rather than the
+   first line -- on the "Tax & Regulatory Compliance / Advisory" card this
+   put the icon beside "Advisory" alone, not the heading. Stacking sidesteps
+   the problem entirely rather than fighting wrap-alignment on centered text. */
+.solution-service .icon { width: 18px; height: 18px; }
 
 /* ---------- Timeline ---------- */
 .timeline {
@@ -980,9 +993,27 @@ summary:focus-visible {
   padding: 26px 28px;
 }
 .skill-card h3 {
+  position: relative;
   font-size: 1.02rem;
   margin-bottom: 16px;
   color: var(--navy-800);
+}
+/* Icon sits at a negative left offset, borrowing space from .skill-card's
+   own existing left padding (28px) rather than from the heading's text box.
+   Two approaches were tried and measured empirically before landing here:
+   (1) flex sibling -- ate into text width, pushed "Business Process &
+   Solution Design" from 1 line to 2, which grew the whole first row 23px
+   via .skills-grid's default row-stretch; (2) absolute + padding-left on
+   the h3 -- same problem, the padding consumes the same width the flex gap
+   did. Only a negative offset with zero padding added to the heading itself
+   leaves the text box exactly as wide as before icons existed. Verified:
+   every .skill-card height is now identical to the pre-icon baseline. */
+.skill-card h3 .icon {
+  position: absolute;
+  left: -24px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
 }
 .skill-card ul { display: flex; flex-direction: column; gap: 9px; }
 .skill-card li {
@@ -1064,11 +1095,21 @@ summary:focus-visible {
   transform: translateY(-3px);
 }
 .contact-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--accent);
 }
+.contact-label .icon { width: 18px; height: 18px; }
+/* The LinkedIn mark is a Simple Icons brand glyph (fill="currentColor" on
+   its own <symbol>, no stroke) -- .icon-brand exists to keep that treatment
+   visually/structurally distinct from the Lucide stroke icons above, even
+   though the base .icon rule itself sets no fill/stroke (those live on each
+   symbol's own path), so there's no actual property collision to override. */
+.contact-label .icon-brand { width: 17px; height: 17px; }
 .contact-value {
   font-size: 0.95rem;
   font-weight: 600;
