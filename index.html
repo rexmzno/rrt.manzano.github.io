@@ -37,6 +37,28 @@
 </head>
 <body>
 
+<!-- Icon sprite (Lucide, ISC license, https://lucide.dev -- inline stroke icons,
+     copied in as raw path data, no CDN/build step). Workstream 01 (Hero) only
+     defines the 3 symbols this workstream uses; later workstreams extend this
+     same sprite rather than creating a second one. -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-workflow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="8" height="8" rx="2"></rect>
+    <path d="M7 11v4a2 2 0 0 0 2 2h4"></path>
+    <rect x="13" y="13" width="8" height="8" rx="2"></rect>
+  </symbol>
+  <symbol id="i-bar-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+    <path d="M18 17V9"></path>
+    <path d="M13 17V5"></path>
+    <path d="M8 17v-3"></path>
+  </symbol>
+  <symbol id="i-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+    <path d="m9 12 2 2 4-4"></path>
+  </symbol>
+</svg>
+
 <div class="ambient-field" aria-hidden="true">
   <span class="ambient-particle" style="--l:4%;  --sz:3px; --dur:26s; --delay:-3s;  --sway:24px;"></span>
   <span class="ambient-particle" style="--l:11%; --sz:2px; --dur:19s; --delay:-11s; --sway:-18px;"></span>
@@ -121,10 +143,13 @@
         <h1 class="reveal">Rex Regin T. Manzano<span class="accent">, CPA</span></h1>
         <p class="hero-lede reveal">
           Whatever the engagement, a business ends up more confident in its
-          information and more in control of the decisions built on it — whether
-          that means an ERP system that finally reflects reality, reporting people
-          actually trust, or compliance nobody has to guess about.
+          information and more in control of the decisions built on it.
         </p>
+        <ul class="hero-highlights reveal">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-workflow"></use></svg>An ERP system that finally reflects reality</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-bar-chart"></use></svg>Reporting people actually trust</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-shield-check"></use></svg>Compliance nobody has to guess about</li>
+        </ul>
         <div class="hero-actions reveal">
           <a href="#case-studies" class="btn btn-primary">View Case Studies</a>
           <a href="#contact" class="btn btn-ghost">Get in Touch</a>

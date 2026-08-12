@@ -240,6 +240,16 @@ summary:focus-visible {
 }
 .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
 
+/* ---------- Icons ---------- */
+/* Base rule for every <svg class="icon"><use href="#i-..."></svg> instance.
+   Color comes from `color`, not a `stroke` override here -- each sprite
+   symbol already sets stroke="currentColor" directly. */
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
@@ -339,8 +349,37 @@ summary:focus-visible {
   font-size: 1.15rem;
   color: rgba(255,255,255,0.78);
   max-width: 560px;
-  margin: 0 0 34px;
+  margin: 0 0 24px;
 }
+
+/* Compact editorial highlight row -- deliberately not a pill/chip (no
+   border-radius:999px, no background fill): the site already leans on
+   pill shapes elsewhere (.cs-scope-tag, .cs-filter-btn, .msn-pill), so
+   this uses the existing .stat visual family (icon anchor + text, thin
+   divider) as its model instead. flex-wrap is load-bearing: .hero-inner
+   has no explicit width above the 900px breakpoint (only max-width:680px
+   + flex-shrink:0), so an unwrapped row here could reintroduce the same
+   class of horizontal-overflow bug the .eyebrow/.hero-inner fix addressed
+   earlier -- this must wrap instead of forcing hero-inner wider. */
+.hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 0;
+  margin: 0 0 40px;
+  padding: 0;
+}
+.hero-highlights li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0 20px;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.78);
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+.hero-highlights li:first-child { padding-left: 0; border-left: none; }
+.hero-highlights .icon { color: var(--accent); }
 
 .hero-actions {
   display: flex;
@@ -1107,6 +1146,10 @@ summary:focus-visible {
 
   .hero { padding-top: 190px; }
   section[id] { scroll-margin-top: 124px; }
+
+  .hero-highlights { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .hero-highlights li { border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.14); padding: 14px 0 0; }
+  .hero-highlights li:first-child { border-top: none; padding-top: 0; }
 }
 
 @media (max-width: 520px) {
