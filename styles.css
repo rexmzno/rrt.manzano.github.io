@@ -994,7 +994,7 @@ summary:focus-visible {
   font-size: 0.85rem;
   font-style: italic;
   color: var(--text-soft);
-  white-space: nowrap;
+  white-space: normal; /* was nowrap: clipped the note below ~700px wide */
 }
 
 /* ---------- Skills ---------- */
